@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 
 if(!isset($_SESSION['username']))
@@ -50,36 +51,52 @@ $result=mysqli_query($data,$sql);
     include 'admin_sidebar.php';
     ?>
     <div class="content">
-        <h1>Student Data</h1>
-        <table border="2px;">
-            <tr>
-                <th class="table_th">Username</th>
-                <th class="table_th">Email</th>
-                <th class="table_th">Phone</th>
-                <th class="table_th">Password</th>
-            </tr>
+        <center>
+            <h1>Student Data</h1>
+            <br><br>
+
             <?php
+        if($_SESSION['message'])
+        {
+            echo $_SESSION['message'];
+        }
+        unset($_SESSION['message']);
+        ?>
+            <br><br>
+            <table border="1px">
+                <tr>
+                    <th class="table_th">Username</th>
+                    <th class="table_th">Email</th>
+                    <th class="table_th">Phone</th>
+                    <th class="table_th">Password</th>
+                    <th class="table_th">Delete</th>
+                </tr>
+                <?php
             while($info=$result->fetch_assoc())
             {
 
             ?>
 
-            <tr>
-                <td class="table_td">
-                    <?php echo "{$info['username']}";?>
-                </td>
-                <td class="table_td">
-                    <?php echo "{$info['email']}";?>
-                </td>
-                <td class="table_td">
-                    <?php echo "{$info['phone']}";?>
-                </td>
-                <td class="table_td">
-                    <?php echo "{$info['password']}";?>
-                </td>
-            </tr>
-            <?php } ?>
-        </table>
+                <tr>
+                    <td class="table_td">
+                        <?php echo "{$info['username']}";?>
+                    </td>
+                    <td class="table_td">
+                        <?php echo "{$info['email']}";?>
+                    </td>
+                    <td class="table_td">
+                        <?php echo "{$info['phone']}";?>
+                    </td>
+                    <td class="table_td">
+                        <?php echo "{$info['password']}";?>
+                    </td>
+                    <td class="table_td">
+                        <?php echo "<a onClick = \" javascript:return confirm('Are you sure to Delete');\" href='delete.php?student_id={$info['id']}'>Delete</a>"; ?>
+                    </td>
+                </tr>
+                <?php } ?>
+            </table>
+        </center>
 
     </div>
 </body>
