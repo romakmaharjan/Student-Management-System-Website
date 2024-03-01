@@ -62,7 +62,7 @@ $result=mysqli_query($data,$sql);
         }
         unset($_SESSION['message']);
         ?>
-            <br><br>
+
             <table border="1px">
                 <tr>
                     <th class="table_th">Username</th>
@@ -70,6 +70,7 @@ $result=mysqli_query($data,$sql);
                     <th class="table_th">Phone</th>
                     <th class="table_th">Password</th>
                     <th class="table_th">Delete</th>
+                    <th class="table_th">Update</th>
                 </tr>
                 <?php
             while($info=$result->fetch_assoc())
@@ -91,7 +92,10 @@ $result=mysqli_query($data,$sql);
                         <?php echo "{$info['password']}";?>
                     </td>
                     <td class="table_td">
-                        <?php echo "<a onClick = \" javascript:return confirm('Are you sure to Delete');\" href='delete.php?student_id={$info['id']}'>Delete</a>"; ?>
+                        <?php echo "<a class= 'btn btn-danger'onClick = \" javascript:return confirm('Are you sure to Delete');\" href='delete.php?student_id={$info['id']}'>Delete</a>"; ?>
+                    </td>
+                    <td class="table_td">
+                        <?php echo "<a class='btn btn-primary' href='update_student.php?student_id={$info['id']}'>update</a>";?>
                     </td>
                 </tr>
                 <?php } ?>
