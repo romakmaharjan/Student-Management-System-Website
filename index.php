@@ -12,6 +12,17 @@ if($_SESSION['message'])
   </script>";
 }
 
+$host = "localhost";
+$username = "root";
+$password = "";
+$db = "schoolproject";
+
+$data = mysqli_connect($host,$username,$password,$db);
+
+$sql = "SELECT * FROM teacher";
+
+$result = mysqli_query($data,$sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -68,33 +79,19 @@ if($_SESSION['message'])
     </center>
     <div class="container">
         <div class="row">
+            <?php  
+            while($info=$result->fetch_assoc())
+            {
+
+            
+            ?>
             <div class="col-md-4">
-                <img class="teacher" src="project_Image/teacher1.jpg" alt="math teacher" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
-                    laudantium doloribus iusto officia reiciendis voluptate blanditiis?
-                    Velit iste quasi soluta numquam, provident placeat, facere
-                    molestias, officia nemo quaerat fugit vel.
-                </p>
+                <img class="teacher" src="<?php echo "{$info['image']}" ?>" alt="math teacher" />
+                <h3><?php echo "{$info['name']}" ?></h3>
+                <h5><?php echo "{$info['description']}" ?></h5>
             </div>
-            <div class="col-md-4">
-                <img class="teacher" src="project_Image/teacher2.jpg" alt="english teacher" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
-                    laudantium doloribus iusto officia reiciendis voluptate blanditiis?
-                    Velit iste quasi soluta numquam, provident placeat, facere
-                    molestias, officia nemo quaerat fugit vel.
-                </p>
-            </div>
-            <div class="col-md-4">
-                <img class="teacher" src="project_Image/teacher3.jpg" alt="account teacher" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
-                    laudantium doloribus iusto officia reiciendis voluptate blanditiis?
-                    Velit iste quasi soluta numquam, provident placeat, facere
-                    molestias, officia nemo quaerat fugit vel.
-                </p>
-            </div>
+            <?php } ?>
+
         </div>
     </div>
     <center>
