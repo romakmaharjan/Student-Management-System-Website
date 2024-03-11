@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 
 if(!isset($_SESSION['username']))
 {
@@ -18,6 +19,18 @@ $data=mysqli_connect($host,$user,$password,$db);
 
 $sql = "SELECT * FROM teacher";
 $result=mysqli_query($data,$sql);
+
+if($_GET['teacher_id'])
+{
+    $t_id=$_GET['teacher_id'];
+    $sql2="DELETE FROM teacher WHERE id='$t_id'";
+    $result2=mysqli_query($data,$sql2);
+
+    if($result2)
+    {
+        header('location:admin_view_teacher.php');
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +75,7 @@ $result=mysqli_query($data,$sql);
                     <th class="table_th">Teacher Name</th>
                     <th class="table_th">About Teacher</th>
                     <th class="table_th">Image</th>
+                    <th class="table_th">Delete</th>
                 </tr>
                 <?php
                 while($info=$result->fetch_assoc())
@@ -75,6 +89,14 @@ $result=mysqli_query($data,$sql);
                     </td>
                     <td class="table_td">
                         <img src="<?php echo "{$info['image']}" ?>" alt="" width="100px">
+                    </td>
+                    <td class="table_td">
+                        <?php
+                        echo "
+                        <a onClick= \"javascript:return confirm('are you sure to delete this');\" class='btn btn-danger' href='admin_view_teacher.php?teacher_id={$info['id']}'>
+                        Delete
+                        </a>";
+                        ?>
                     </td>
                 </tr>
                 <?php } ?>
