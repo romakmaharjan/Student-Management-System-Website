@@ -33,6 +33,15 @@ $result=mysqli_query($data,$sql);
     include 'admin_css.php';
 
     ?>
+    <style>
+    table th {
+        border: 1px solid black;
+    }
+
+    table td {
+        border: 1px solid black;
+    }
+    </style>
 </head>
 
 <body>
@@ -43,40 +52,38 @@ $result=mysqli_query($data,$sql);
         <center>
             <h1>Applied for Admission</h1>
             <hr />
-            <br><br>
-
-            <table border="1px">
-                <tr>
-                    <th style="padding: 20px; font-size: 15px;">Name</th>
-                    <th style="padding: 20px; font-size: 15px;">Email</th>
-                    <th style="padding: 20px; font-size: 15px;">Phone</th>
-                    <th style="padding: 20px; font-size: 15px;">Message</th>
-                </tr>
-
-                <?php
+            <br>
+            <table>
+                <tbody>
+                    <tr>
+                        <th style="padding: 20px; font-size: 15px;">Name</th>
+                        <th style="padding: 20px; font-size: 15px;">Email</th>
+                        <th style="padding: 20px; font-size: 15px;">Phone</th>
+                        <th style="padding: 20px; font-size: 15px;">Message</th>
+                    </tr>
+                    <?php
                 while($info=$result->fetch_assoc())
                 {
-
-                
             ?>
-                <tr>
-                    <td style="padding: 20px;">
-                        <?php echo "{$info['name']}"; ?>
-                    </td>
-                    <td style=" padding: 20px;">
-                        <?php echo "{$info['email']}"; ?>
-                    </td>
-                    <td style="padding: 20px;">
-                        <?php echo "{$info['phone']}"; ?>
-                    </td>
-                    <td style=" padding: 20px;">
-                        <?php echo "{$info['message']}"; ?>
-                    </td>
+                    <tr>
+                        <td style="padding: 20px;">
+                            <?php echo "{$info['name']}"; ?>
+                        </td>
+                        <td style=" padding: 20px;">
+                            <?php echo "{$info['email']}"; ?>
+                        </td>
+                        <td style="padding: 20px;">
+                            <?php echo "{$info['phone']}"; ?>
+                        </td>
+                        <td style=" padding: 20px;">
+                            <?php echo "{$info['message']}"; ?>
+                        </td>
 
-                </tr>
-                <?php
+                    </tr>
+                    <?php
                 }
                 ?>
+                </tbody>
             </table>
         </center>
 
