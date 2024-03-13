@@ -76,6 +76,7 @@ if($_GET['teacher_id'])
                     <th class="table_th">About Teacher</th>
                     <th class="table_th">Image</th>
                     <th class="table_th">Delete</th>
+                    <th class="table_th">Update</th>
                 </tr>
                 <?php
                 while($info=$result->fetch_assoc())
@@ -96,6 +97,13 @@ if($_GET['teacher_id'])
                         <a onClick= \"javascript:return confirm('are you sure to delete this');\" class='btn btn-danger' href='admin_view_teacher.php?teacher_id={$info['id']}'>
                         Delete
                         </a>";
+                        ?>
+                    </td>
+                    <td class="table_td">
+                        <?php
+                        echo "
+                        <a class='btn btn-success' href='admin_update_teacher.php?teacher_id={$info['id']}'>Edit</a>
+                        ";
                         ?>
                     </td>
                 </tr>
