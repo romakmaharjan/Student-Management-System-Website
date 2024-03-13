@@ -19,9 +19,13 @@ $db = "schoolproject";
 
 $data = mysqli_connect($host,$username,$password,$db);
 
-$sql = "SELECT * FROM teacher";
+// Fetch teachers
+$sql_teacher = "SELECT * FROM teacher";
+$result_teacher = mysqli_query($data, $sql_teacher);
 
-$result = mysqli_query($data,$sql);
+// Fetch courses
+$sql_course = "SELECT * FROM course";
+$result_course = mysqli_query($data, $sql_course);
 
 ?>
 
@@ -80,7 +84,7 @@ $result = mysqli_query($data,$sql);
     <div class="container">
         <div class="row">
             <?php  
-            while($info=$result->fetch_assoc())
+            while($info=$result_teacher->fetch_assoc())
             {
 
             
@@ -99,18 +103,18 @@ $result = mysqli_query($data,$sql);
     </center>
     <div class="container">
         <div class="row">
+            <?php  
+            while($info=$result_course->fetch_assoc())
+            {
+            ?>
             <div class="col-md-4">
-                <img class="teacher" src="project_Image/web.jpg" alt="web course" />
-                <h3>Web Developement</h3>
+                <img class="course" src="<?php echo "{$info['image']}" ?>" alt="image course" />
+                <h3><?php echo "{$info['name']}" ?></h3>
+                <h5><?php echo "{$info['course_description']}" ?></h5>
             </div>
-            <div class="col-md-4">
-                <img class="teacher" src="project_Image/graphic.jpg" alt="graphics course" />
-                <h3>Graphics Design</h3>
-            </div>
-            <div class="col-md-4">
-                <img class="teacher" src="project_Image/marketing.png" alt="maketing course" />
-                <h3>Digital Marketing</h3>
-            </div>
+            <?php } ?>
+
+
         </div>
     </div>
     <center>
