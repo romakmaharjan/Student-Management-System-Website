@@ -46,7 +46,7 @@ $result_course = mysqli_query($data, $sql_course);
 
 <body>
     <nav>
-        <label class="logo">Adinath-School</label>
+        <label class="logo">School-Website</label>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Contact</a></li>
@@ -57,7 +57,7 @@ $result_course = mysqli_query($data, $sql_course);
 
     <div class="section1">
         <label class="img_text">We Teach and Care Student</label>
-        <img class="main_img" src="project_Image/school_management.jpg" alt="management school" />
+        <img class="main_img" src="project_image/school classroom.jpg" alt="management school" />
     </div>
     <div class="container">
         <div class="row">
